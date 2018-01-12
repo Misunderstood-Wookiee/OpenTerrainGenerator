@@ -8,6 +8,16 @@ it using Git, or download it as a [ZIP file][].
 You also need to have the [JDK][JDK 7] installed. You will need version 7 or
 newer.
 
+Normally, you'd just use the import option of Eclipse or load the project in NeatBeans. However, ForgeGradle requires us to run another command first.
+
+ Run the command
+`./gradlew setupDecompWorkspace` in the OpenTerrainGenerator directory. This command
+decompiles Minecraft, so that you can quickly jump to the Minecraft source code
+from Eclipse.
+
+Sometimes this command will fail if the Forge web servers are offline. In that
+case, simply try running the command again.
+
 ## Creating JAR files
 Run the command `./gradlew install` and/or `./gradlew build` in the OpenTerrainGenerator directory. If that
 doesn't work, you probably need to make the file executable by running
@@ -22,16 +32,6 @@ First of all, ForgeGradle and Eclipse are not the best friends. Sometimes, you'l
 find out that things don't work anymore. When things do work however, you have a
 nice test environment where you can quickly make changes to OpenTerrainGenerator.
 
-### Before you start
-Normally, you'd just use the import option of Eclipse. However, ForgeGradle
-requires us to run another command first. Run the command
-`./gradlew setupDecompWorkspace` in the OpenTerrainGenerator directory. This command
-decompiles Minecraft, so that you can quickly jump to the Minecraft source code
-from Eclipse.
-
-Sometimes this command will fail if the Forge web servers are offline. In that
-case, simply try running the command again.
-
 ### Importing the project
 Make sure you have a recent version of Eclipse installed. Eclipse Neon should
 work, and the slightly older Eclipse Mars.1 should work too. Older versions,
@@ -40,9 +40,9 @@ including the original Eclipse Mars release, will not work.
 To import OpenTerrainGenerator, use `File` -> `Import` -> `Gradle` -> `Gradle Project`
 and import the OpenTerrainGenerator directory.
 
-**Please note:** As of Nov. 2016 there is a [bug] in the latest release of Buildship (the eclipse plugin that manages 
-gradle) that may generate an `Unsupported method: HierarchicalEclipseProject.getIdentifier()` error when attempting to 
-import the project into Eclipse. If this is a case, you need to manually update Buildship to a later version. To do so, 
+**Please note:** As of Nov. 2016 there is a [bug] in the latest release of Buildship (the eclipse plugin that manages
+gradle) that may generate an `Unsupported method: HierarchicalEclipseProject.getIdentifier()` error when attempting to
+import the project into Eclipse. If this is a case, you need to manually update Buildship to a later version. To do so,
 click `Help` -> `Install New Software` and input this url: http://download.eclipse.org/buildship/updates/e46/milestones/2.x/.
 
 ### Running the Forge client or server
