@@ -118,38 +118,10 @@ task rootJar(type: Jar, dependsOn: ['compileJava', asmJar]) {
     from ("build/libs") {
         include "OTG-Core.jar" // If you changed the name above, change it here also.
     }
-	
+
 	destinationDir = new File(project.buildDir, "distributions")
 
     // Leave the following line commented out to overwrite the default jar,
     //    otherwise <basename>-root.jar will be created, containing the embedded coremod jar
     // classifier = 'root'
 }
-
-task signAsmJar(type: SignJar, dependsOn: reobfAsmJar) {
-    onlyIf { // Skip the task if our secret data isn't available
-        project.hasProperty('keyStore')
-    }
-    keyStore = project.keyStore // This needs to be a path to the keystore file
-    alias = project.keyStoreAlias
-    storePass = project.keyStorePass
-    keyPass = project.keyStoreKeyPass
-    inputFile = jar.archivePath // TODO: Sign a jar inside a jar? Find a better solution?
-    outputFile = jar.archivePath // TODO: Sign a jar inside a jar? Find a better solution?
-}
-
-task signJar(type: SignJar, dependsOn: reobfJar) {
-    onlyIf { // Skip the task if our secret data isn't available
-        project.hasProperty('keyStore')
-    }
-    keyStore = project.keyStore // This needs to be a path to the keystore file
-    alias = project.keyStoreAlias
-    storePass = project.keyStorePass
-    keyPass = project.keyStoreKeyPass
-    inputFile = jar.archivePath
-    outputFile = jar.archivePath
-}
-
-build.dependsOn rootJar
-build.dependsOn signJar
-//build.dependsOn signAsmJar // TODO: Figure out a way to sign the asm jar
