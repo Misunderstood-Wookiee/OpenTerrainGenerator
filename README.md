@@ -1,2 +1,3 @@
 ##  Feature Development Branch
-This branch on it's own is useless it is used for commiting new features without effecting the core project, all development here must be merged with OTG v1.12
+This branch on it's own is useless, it's used for commiting new features without effecting the core project.
+All development commits here must be picked & merged into OTG v1.12 main branch before compiled.
